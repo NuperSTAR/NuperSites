@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pick a Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #000000;
+            margin: 0; /* Remove default margin for h1 */
+            padding-left: 20px; /* Add padding to push text to the left */
+        }
+        .header {
+            background-color: #ccc;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between; /* Align text to the left and other content to the right */
+            align-items: center; /* Vertically center the text within the header */
+        }
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 20px;
+            padding: 20px;
+            justify-items: center;
+        }
+        .game-link {
+            text-decoration: none;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 20px;
+            border: 2px solid #007BFF;
+            border-radius: 10px;
+            display: inline-block;
+            transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .game-link:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Style for the modal dialog */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>nuperstar.github.io/NuperSites</h1>
+    </div>
+    <div class="game-grid">
+        <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g9/super-mario-bros')">Super Mario</a>
+        <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g/slope')">Slope</a>
+        <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g9/stack-ball/')">Stack Ball</a>
+        <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g/basketball-stars')">Basketball stars</a>
+        <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g3/we-become-what-we-behold')">We Become What We Behold</a>
+        <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g9/shoot-stickman')">Shoot Stickman</a>
+        <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g/cookie-clicker')">Cookie Clicker</a>
+        <a href="#" class="game-link" onclick="openModal('https://nuperstar.github.io/Terrain')">Terrain (Made by the owner of this website)</a>
+        <!-- Add more games with their links here -->
+    </div>
+
+    <!-- Modal dialog -->
+    <div id="gameModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <iframe id="gameFrame" src="" frameborder="0" width="800" height="600"></iframe>
+        </div>
+    </div>
+
+    <!-- Additional paragraph -->
+    <p>note: Games are added every day or every 2 days- 5 days.</p>
+    <p>Want more games? Ask me in this email: <a href="mailto:your@email.com">your@email.com</a></p>
+
+    <script>
+        function openModal(url) {
+            // Get the modal and the iframe
+            var modal = document.getElementById("gameModal");
+            var iframe = document.getElementById("gameFrame");
+
+            // Set the iframe source to the specified URL
+            iframe.src = url;
+
+            // Display the modal
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            // Get the modal
+            var modal = document.getElementById("gameModal");
+
+            // Hide the modal and reset the iframe source
+            modal.style.display = "none";
+            document.getElementById("gameFrame").src = "";
+        }
+    </script>
+</body>
+</html>
