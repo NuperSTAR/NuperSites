@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NuperSites</title>
+    <title>Pick a Game</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,39 +15,37 @@
         }
         h1 {
             color: #000000;
-            margin: 0; /* Remove default margin for h1 */
-            padding-left: 20px; /* Add padding to push text to the left */
+            margin: 0;
+            padding-left: 20px;
         }
         .header {
-            background-color: #ccc;
+            background-color: #007BFF;
             padding: 10px;
             display: flex;
-            justify-content: space-between; /* Align text to the left and other content to the right */
-            align-items: center; /* Vertically center the text within the header */
+            justify-content: space-between;
+            align-items: center;
         }
         .game-grid {
             display: grid;
-            grid-template-columns: repeat(10, 1fr);
-            gap: 20px;
-            padding: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            padding: 50px;
             justify-items: center;
         }
         .game-link {
             text-decoration: none;
-            background-color: #007BFF;
-            color: #fff;
-            padding: 20px;
-            border: 2px solid #007BFF;
+            background-color: #ccc;
+            color: #000;
+            padding: 80px;
+            border: 2px solid #999;
             border-radius: 10px;
             display: inline-block;
-            transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+            transition: transform 0.2s ease-in-out;
             cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
         }
         .game-link:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+            transform: scale(1.1);
         }
 
         /* Style for the modal dialog */
@@ -78,11 +76,38 @@
             cursor: pointer;
             font-size: 24px;
         }
+
+        /* Style for the Share button */
+        .share-button {
+            background-color: #003f83;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .copylink {
+            background-color: #131313;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Style for the footer */
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>nuperstar.github.io/NuperSites</h1>
+        <!-- Share button to open the modal -->
+        <button class="share-button" onclick="openShareModal()">Share</button>
     </div>
     <div class="game-grid">
         <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g9/super-mario-bros')">Super Mario</a>
@@ -91,13 +116,25 @@
         <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g/basketball-stars')">Basketball stars</a>
         <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g3/we-become-what-we-behold')">We Become What We Behold</a>
         <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g9/shoot-stickman')">Shoot Stickman</a>
-        <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g/cookie-clicker')">Cookie Clicker</a>
-        <a href="#" class="game-link" onclick="openModal('https://nuperstar.github.io/Terrain')">Terrain (Made by the owner of this website)</a>
-         <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g8/tomb-of-the-mask')">Tomb Of The Mask</a>
+        <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g/archery-world-tour')">Archery World Tour</a>
+        <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g8/cluster-rush')">Cluster Rush</a>
+        <a href="#" class="game-link" onclick="openModal('https://nuperstar.github.io/BlockGameMOVED')">Block Game</a>
+        <a href="#" class="game-link" onclick="openModal('https://nuperstar.github.io/NuperMAPS/')">NuperMAPS --non game --</a>
+        <a href="#" class="game-link" onclick="openModal('https://nuperstar.github.io/Terrain')">Terrain </a>
         <!-- Add more games with their links here -->
     </div>
 
-    <!-- Modal dialog -->
+    <!-- Modal dialog for sharing -->
+    <div id="shareModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeShareModal()">&times;</span>
+            <p>Share with your friends!</p>
+            <p>URL: <input type="text" id="shareUrl" value="https://nuperstar.github.io/NuperSites/#" readonly></p>
+            <button class="copylink" onclick="copyLink()">Copy Link</button>
+        </div>
+    </div>
+
+    <!-- Modal dialog for games -->
     <div id="gameModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -105,9 +142,12 @@
         </div>
     </div>
 
-    <!-- Additional paragraph -->
-    <p>note: Games are added every day or every 2 days- 5 days.</p>
-    <p>Want more games? Ask me in this email: <a href="mailto:nupersoavez@gmail.com">nupersoavez@gmail.com</a></p>
+    <p>More games are coming in the way. Thank you for choosing this website, I hope you like it.</p>
+
+    <!-- Footer section -->
+    <div class="footer">
+        <p>Made By NuperSTAR</p>
+    </div>
 
     <script>
         function openModal(url) {
@@ -129,6 +169,26 @@
             // Hide the modal and reset the iframe source
             modal.style.display = "none";
             document.getElementById("gameFrame").src = "";
+        }
+
+        // Function to open the Share modal
+        function openShareModal() {
+            var shareModal = document.getElementById("shareModal");
+            shareModal.style.display = "block";
+        }
+
+        // Function to close the Share modal
+        function closeShareModal() {
+            var shareModal = document.getElementById("shareModal");
+            shareModal.style.display = "none";
+        }
+
+        // Function to copy the URL to the clipboard
+        function copyLink() {
+            var shareUrlInput = document.getElementById("shareUrl");
+            shareUrlInput.select();
+            document.execCommand("copy");
+            alert("URL copied to clipboard: " + shareUrlInput.value);
         }
     </script>
 </body>
