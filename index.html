@@ -1,54 +1,73 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pick a Game</title>
+    <title>NuperSite</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #000;
+            background: linear-gradient(to bottom, #000, #333);
             color: #fff;
             margin: 0;
             padding: 0;
         }
         h1 {
-            color: #000000;
+            color: #fff;
             margin: 0;
-            padding-left: 20px;
+            padding: 20px;
+            font-size: 24px;
+            text-transform: uppercase;
+            text-align: left;
         }
         .header {
-            background-color: #007BFF;
+            background-color: #333;
             padding: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+        .share-info {
+            display: flex;
+            align-items: center;
+        }
+        .share-button,
+        .info-button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-left: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
         .game-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 50px;
-            padding: 50px;
-            justify-items: center;
+            gap: 20px;
+            padding: 20px;
         }
         .game-link {
             text-decoration: none;
-            background-color: #ccc;
-            color: #000;
-            padding: 80px;
-            border: 2px solid #999;
+            background-color: #555;
+            color: #fff;
+            padding: 20px;
+            border: 2px solid #666;
             border-radius: 10px;
             display: inline-block;
             transition: transform 0.2s ease-in-out;
             cursor: pointer;
             font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .game-link:hover {
             transform: scale(1.1);
         }
-
         /* Style for the modal dialog */
         .modal {
             display: none;
@@ -77,44 +96,77 @@
             cursor: pointer;
             font-size: 24px;
         }
-
-        /* Style for the Share button */
-        .share-button {
-            background-color: #003f83;
+        /* Style for the Info modal */
+        #infoModal .modal-content {
+            max-width: 400px;
+            text-align: left;
+        }
+        #infoModal h2 {
+            font-family: "Arial", sans-serif;
+            font-weight: bold;
+            font-size: 24px;
             color: #fff;
-            padding: 10px 20px;
+            margin: 0;
+        }
+        #infoModal p {
+            font-family: "Arial", sans-serif;
+            font-size: 16px;
+            color: #fff;
+        }
+        /* Style for the game iframe */
+        #gameFrame {
+            width: 100%;
+            height: 100%;
             border: none;
-            border-radius: 5px;
-            cursor: pointer;
         }
-        .copylink {
-            background-color: #131313;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+        
+        #gameModal .modal-content {
+    width: 80%; /* Adjust the width as needed */
+    height: 80%; /* Adjust the height as needed */
+    max-width: none; /* Remove any max-width constraint */
+    max-height: none; /* Remove any max-height constraint */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
 
-        /* Style for the footer */
-        .footer {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-        }
+/* Style for the fullscreen button */
+.fullscreen-button {
+    background-color: #009688;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-weight: bold;
+    z-index: 1; /* Ensure it's on top of the iframe */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
     </style>
 </head>
 <body>
     <div class="header">
         <h1>nuperstar.github.io/NuperSites</h1>
-        <!-- Share button to open the modal -->
-        <button class="share-button" onclick="openShareModal()">Share</button>
+        <div class="share-info">
+            <!-- Share button to open the Share modal -->
+            <button class="share-button" onclick="openShareModal()">Share</button>
+            <!-- Info button to open the Info modal -->
+            <button class="info-button" onclick="openInfoModal()">Info</button>
+        </div>
     </div>
     <div class="game-grid">
-        <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g9/super-mario-bros')">Super Mario</a>
-        <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g/slope')">Slope</a>
+<a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g/slope')">Slope</a>
         <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g9/stack-ball/')">Stack Ball</a>
-        <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g/basketball-stars')">Basketball stars</a>
+        <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g/basketball-stars')">Basketball Stars</a>
         <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g3/we-become-what-we-behold')">We Become What We Behold</a>
         <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g9/shoot-stickman')">Shoot Stickman</a>
         <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g/archery-world-tour')">Archery World Tour</a>
@@ -123,8 +175,16 @@
         <a href="#" class="game-link" onclick="openModal('https://nuperstar.github.io/NuperMAPS/')">NuperMAPS --non game --</a>
         <a href="#" class="game-link" onclick="openModal('https://nuperstar.github.io/Terrain')">Terrain </a>
         <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g/bitlife')">Bitlife</a>
-        <!-- Add more games with their links here -->
-        <!-- Add more games with their links here -->
+        <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g5/idle-ants')">Idle Ants</a>
+        <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g2/stack')">Stack</a>
+        <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g9/red-ball-4')">Red Ball</a>
+        <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g3/water-color-sort')">Water Color Sort</a>
+        <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g8/geometry-dash/')">Geometry Dash</a>
+        <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g/stickman-hook')">Stickman Hook</a>
+        <a href="#" class="game-link" onclick="openModal('https://topvazstore.github.io/g4/football-legends')">Football Legends</a>
+
+
+        <!-- Add more game links here -->
     </div>
 
     <!-- Modal dialog for sharing -->
@@ -137,6 +197,15 @@
         </div>
     </div>
 
+    <!-- Modal dialog for info -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeInfoModal()">&times;</span>
+            <h2>About This Website</h2>
+            <p>This is a modern website for playing a variety of games.</p>
+        </div>
+    </div>
+
     <!-- Modal dialog for games -->
     <div id="gameModal" class="modal">
         <div class="modal-content">
@@ -144,13 +213,19 @@
             <iframe id="gameFrame" src="" frameborder="0" width="800" height="600"></iframe>
         </div>
     </div>
-
-    <p>More games are coming in the way. Thank you for choosing this website, I hope you like it.</p>
-
-    <!-- Footer section -->
-    <div class="footer">
-        <p>Made By NuperSTAR</p>
+    
+    <!-- Modal dialog for games -->
+<!-- Modal dialog for games -->
+<div id="gameModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <button class="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
+        <iframe id="gameFrame" src="" frameborder="0" width="800" height="600"></iframe>
     </div>
+</div>
+
+
+    <p>More games are coming your way. Thank you for choosing this website; we hope you enjoy it.</p>
 
     <script>
         function openModal(url) {
@@ -193,6 +268,45 @@
             document.execCommand("copy");
             alert("URL copied to clipboard: " + shareUrlInput.value);
         }
+
+        // Function to open the Info modal
+        function openInfoModal() {
+            var infoModal = document.getElementById("infoModal");
+            infoModal.style.display = "block";
+        }
+
+        // Function to close the Info modal
+        function closeInfoModal() {
+            var infoModal = document.getElementById("infoModal");
+            infoModal.style.display = "none";
+        }
+        
+        // Function to toggle fullscreen
+function toggleFullscreen() {
+    var modal = document.getElementById("gameModal");
+    var iframe = document.getElementById("gameFrame");
+
+    if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement) {
+        // Enter fullscreen mode
+        if (modal.requestFullscreen) {
+            modal.requestFullscreen();
+        } else if (modal.mozRequestFullScreen) { // Firefox
+            modal.mozRequestFullScreen();
+        } else if (modal.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+            modal.webkitRequestFullscreen();
+        }
+    } else {
+        // Exit fullscreen mode
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) { // Firefox
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) { // Chrome, Safari, and Opera
+            document.webkitExitFullscreen();
+        }
+    }
+}
+
     </script>
 </body>
 </html>
