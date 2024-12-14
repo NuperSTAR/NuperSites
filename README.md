@@ -1,3 +1,6 @@
+# README
+The first ever name that will foreshadow to NuperSITE. This is very old.
+
 # NuperSites
 A full games website (beta)
 
